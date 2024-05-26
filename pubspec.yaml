@@ -1,0 +1,34 @@
+name: asistencias_movil
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.4
+  http: ^0.13.5
+  flutter_secure_storage: ^8.0.0
+  cupertino_icons: ^1.0.6
+  cached_network_image: ^3.1.0
+  flutter_pdfview: ^1.0.0
+  path_provider: ^2.0.5
+  url_launcher: ^6.0.3
+  advance_pdf_viewer: ^2.0.0
+  intl: ^0.18.1
+  web_socket_channel: ^2.0.0
+  image_picker: ^0.8.4
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/utils/
+    - assets/utils/home.png
