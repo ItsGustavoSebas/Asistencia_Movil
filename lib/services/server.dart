@@ -1,5 +1,5 @@
 class Servidor {
-  final String baseUrl = 'http://137.184.179.201/api';
-  final String baseDocuments = 'http://137.184.179.201';
+  final String baseUrl = 'http://10.0.2.2:8080';
+  final String baseDocuments = 'http://10.0.2.2:8080';
   final headers = <String, String>{'Content-type': 'application/json'};
 }

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
@@ -6,73 +5,101 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
-    int id;
-    String name;
-    String email;
-    dynamic emailVerifiedAt;
-    int ci;
-    int telefono;
-    String direccion;
-    dynamic twoFactorConfirmedAt;
-    dynamic currentTeamId;
-    int postulante;
-    int empleado;
-    String createdAt;
-    String updatedAt;
-    String profilePhotoUrl;
-    String? foto;
+    int statusCode;
+    String message;
+    OurUsers ourUsers;
 
     User({
-        required this.id,
-        required this.name,
-        required this.email,
-        required this.emailVerifiedAt,
-        required this.ci,
-        required this.telefono,
-        required this.direccion,
-        required this.twoFactorConfirmedAt,
-        required this.currentTeamId,
-        required this.postulante,
-        required this.empleado,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.profilePhotoUrl,
-        required this.foto
+        required this.statusCode,
+        required this.message,
+        required this.ourUsers,
     });
 
     factory User.fromJson(Map<String, dynamic> json) => User(
+        statusCode: json["statusCode"],
+        message: json["message"],
+        ourUsers: OurUsers.fromJson(json["ourUsers"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "statusCode": statusCode,
+        "message": message,
+        "ourUsers": ourUsers.toJson(),
+    };
+}
+
+class OurUsers {
+    int id;
+    String email;
+    String name;
+    String password;
+    dynamic city;
+    String role;
+    bool enabled;
+    String username;
+    List<Authority> authorities;
+    bool accountNonLocked;
+    bool accountNonExpired;
+    bool credentialsNonExpired;
+
+    OurUsers({
+        required this.id,
+        required this.email,
+        required this.name,
+        required this.password,
+        required this.city,
+        required this.role,
+        required this.enabled,
+        required this.username,
+        required this.authorities,
+        required this.accountNonLocked,
+        required this.accountNonExpired,
+        required this.credentialsNonExpired,
+    });
+
+    factory OurUsers.fromJson(Map<String, dynamic> json) => OurUsers(
         id: json["id"],
-        name: json["name"],
         email: json["email"],
-        emailVerifiedAt: json["email_verified_at"],
-        ci: json["ci"],
-        telefono: json["telefono"],
-        direccion: json["direccion"],
-        twoFactorConfirmedAt: json["two_factor_confirmed_at"],
-        currentTeamId: json["current_team_id"],
-        postulante: json["Postulante"],
-        empleado: json["Empleado"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-        profilePhotoUrl: json["profile_photo_url"],
-        foto: json["foto"],
+        name: json["name"],
+        password: json["password"],
+        city: json["city"],
+        role: json["role"],
+        enabled: json["enabled"],
+        username: json["username"],
+        authorities: List<Authority>.from(json["authorities"].map((x) => Authority.fromJson(x))),
+        accountNonLocked: json["accountNonLocked"],
+        accountNonExpired: json["accountNonExpired"],
+        credentialsNonExpired: json["credentialsNonExpired"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
         "email": email,
-        "email_verified_at": emailVerifiedAt,
-        "ci": ci,
-        "telefono": telefono,
-        "direccion": direccion,
-        "two_factor_confirmed_at": twoFactorConfirmedAt,
-        "current_team_id": currentTeamId,
-        "Postulante": postulante,
-        "Empleado": empleado,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-        "profile_photo_url": profilePhotoUrl,
-        "foto": foto,
+        "name": name,
+        "password": password,
+        "city": city,
+        "role": role,
+        "enabled": enabled,
+        "username": username,
+        "authorities": List<dynamic>.from(authorities.map((x) => x.toJson())),
+        "accountNonLocked": accountNonLocked,
+        "accountNonExpired": accountNonExpired,
+        "credentialsNonExpired": credentialsNonExpired,
+    };
+}
+
+class Authority {
+    String authority;
+
+    Authority({
+        required this.authority,
+    });
+
+    factory Authority.fromJson(Map<String, dynamic> json) => Authority(
+        authority: json["authority"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "authority": authority,
     };
 }

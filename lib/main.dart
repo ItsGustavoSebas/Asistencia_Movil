@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) => const HomeScreen(),
         'splash': (_) => const SplashScreen(),
-        'login': (_) => const LoginScreen(),
+        'login': (_) => LoginScreen(),
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: const Color.fromARGB(255, 248, 244, 243),

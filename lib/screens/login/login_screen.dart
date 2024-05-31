@@ -111,7 +111,7 @@ class _LoginForm extends StatelessWidget {
                         Provider.of<AuthService>(context, listen: false);
 
                     String respuesta = await authService.login(
-                        loginForm.email, loginForm.password, 'movile');
+                        loginForm.email, loginForm.password, 'movil');
 
                     if (respuesta == 'correcto') {
                       loginForm.isLoading = false;

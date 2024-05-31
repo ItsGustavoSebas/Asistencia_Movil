@@ -20,7 +20,7 @@ class SideBar extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginScreen()));
+                          builder: (context) => LoginScreen()));
                 },
               ),
             ],
@@ -29,20 +29,13 @@ class SideBar extends StatelessWidget {
           return ListView(
             children: [
               UserAccountsDrawerHeader(
-                accountName: Text(auth.user.name),
-                accountEmail: Text(auth.user.email),
+                accountName: Text(auth.user.ourUsers.name),
+                accountEmail: Text(auth.user.ourUsers.email),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(
-                    child: auth.user.foto != null
-                        ? Image.network(
-                            'http://137.184.179.201/${auth.user.foto}',
-                            width: 90,
-                            height: 90,
-                            fit: BoxFit.cover,
-                          )
-                        : Text(
-                            auth.user.name.isNotEmpty
-                                ? auth.user.name[0].toUpperCase()
+                    child:  Text(
+                            auth.user.ourUsers.name.isNotEmpty
+                                ? auth.user.ourUsers.name[0].toUpperCase()
                                 : '?', // Mostrar '?' si el nombre está vacío
                             style: TextStyle(fontSize: 24),
                           ),

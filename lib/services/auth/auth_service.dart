@@ -19,16 +19,21 @@ class AuthService extends ChangeNotifier {
   Future<String> login(
       String email, String password, String device_name) async {
     try {
-      final response =
-          await http.post(Uri.parse('${servidor.baseUrl}/sanctum/token'),
-              body: ({
-                'email': email,
-                'password': password,
-                'device_name': device_name,
-              }));
+      final response = await http.post(
+        Uri.parse('${servidor.baseUrl}/auth/login'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+      );
 
       if (response.statusCode == 200) {
-        String token = response.body.toString();
+        final Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+        String token = responseBody['token'];
         tryToken(token);
         return 'correcto';
       } else {
@@ -39,11 +44,6 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  String? getUserId() {
-    return _user?.id
-        .toString(); // Suponiendo que el id del usuario se llama "id"
-  }
-
   Future<bool> checkAuthentication() async {
     if (_isLoggerdIn) {
       return true;
@@ -52,7 +52,7 @@ class AuthService extends ChangeNotifier {
       if (token != null) {
         try {
           final response = await http.get(
-            Uri.parse('${servidor.baseUrl}/user'),
+            Uri.parse('${servidor.baseUrl}/adminuser/get-profile'),
             headers: {'Authorization': 'Bearer $token'},
           );
           if (response.statusCode == 200) {
@@ -113,7 +113,7 @@ class AuthService extends ChangeNotifier {
       return;
     } else {
       try {
-        final response = await http.get(Uri.parse('${servidor.baseUrl}/user'),
+        final response = await http.get(Uri.parse('${servidor.baseUrl}/adminuser/get-profile'),
             headers: {'Authorization': 'Bearer $token'});
 
         print(response.body);
@@ -134,9 +134,6 @@ class AuthService extends ChangeNotifier {
 
   void logout() async {
     try {
-      final response = await http.get(
-          Uri.parse('${servidor.baseUrl}/user/revoke'),
-          headers: {'Authorization': 'Bearer $_token'});
       cleanUp();
       notifyListeners();
     } catch (e) {
