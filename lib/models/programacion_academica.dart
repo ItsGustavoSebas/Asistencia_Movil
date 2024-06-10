@@ -35,12 +35,12 @@ class ProgramacionAcademica {
         grupo: Grupo.fromMap(json["grupo"]),
         diaHorario: DiaHorario.fromMap(json["diaHorario"]),
         asistencias: json["asistencias"] != null
-            ? List<Asistencia>.from(json["asistencias"]
-                .map((x) => Asistencia.fromMap(x)))
+            ? List<Asistencia>.from(
+                json["asistencias"].map((x) => Asistencia.fromMap(x)))
             : [],
         licencias: json["licencias"] != null
-            ? List<Licencia>.from(json["licencias"]
-                .map((x) => Licencia.fromMap(x)))
+            ? List<Licencia>.from(
+                json["licencias"].map((x) => Licencia.fromMap(x)))
             : [],
       );
 
@@ -58,6 +58,7 @@ class ProgramacionAcademica {
             : [],
       };
 }
+
 class DiaHorario {
   int id;
   Dia dia;
@@ -448,8 +449,8 @@ class Asistencia {
   Asistencia({
     required this.id,
     required this.fecha,
-     this.latitud,
-     this.longitud,
+    this.latitud,
+    this.longitud,
     required this.estado,
   });
 
@@ -463,13 +464,12 @@ class Asistencia {
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "fecha": fecha.toIso8601String(), 
+        "fecha": fecha.toIso8601String(),
         "latitud": latitud,
         "longitud": longitud,
         "estado": estado,
       };
 }
-
 
 class Licencia {
   int id;

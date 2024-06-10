@@ -214,7 +214,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ListaDeAsistenciasScreen()),
+                                  builder: (context) =>
+                                      ListaDeAsistenciasScreen()),
                             );
                           },
                           child: Text('Ver Reporte de Asistencias'),

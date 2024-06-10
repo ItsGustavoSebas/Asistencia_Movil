@@ -4,7 +4,8 @@ import 'package:asistencias_movil/services/gruposervice.dart';
 class LicenciaScreen extends StatefulWidget {
   final int programacionAcademicaId;
 
-  const LicenciaScreen({Key? key, required this.programacionAcademicaId}) : super(key: key);
+  const LicenciaScreen({Key? key, required this.programacionAcademicaId})
+      : super(key: key);
 
   @override
   _LicenciaScreenState createState() => _LicenciaScreenState();
@@ -25,17 +26,20 @@ class _LicenciaScreenState extends State<LicenciaScreen> {
     DateTime fechaFin = DateTime.parse(_fechaFinController.text);
     String motivo = _motivoController.text;
 
-    String resultado = await GrupoService().solicitarLicencia(widget.programacionAcademicaId, fechaInicio, fechaFin, motivo);
+    String resultado = await GrupoService().solicitarLicencia(
+        widget.programacionAcademicaId, fechaInicio, fechaFin, motivo);
 
     setState(() {
       _isLoading = false;
     });
 
     if (resultado == 'correcto') {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Licencia solicitada con éxito')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Licencia solicitada con éxito')));
       Navigator.pushReplacementNamed(context, '/');
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al solicitar licencia')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error al solicitar licencia')));
     }
   }
 
@@ -51,11 +55,13 @@ class _LicenciaScreenState extends State<LicenciaScreen> {
           children: [
             TextField(
               controller: _fechaInicioController,
-              decoration: InputDecoration(labelText: 'Fecha de Inicio (yyyy-MM-dd)'),
+              decoration:
+                  InputDecoration(labelText: 'Fecha de Inicio (yyyy-MM-dd)'),
             ),
             TextField(
               controller: _fechaFinController,
-              decoration: InputDecoration(labelText: 'Fecha de Fin (yyyy-MM-dd)'),
+              decoration:
+                  InputDecoration(labelText: 'Fecha de Fin (yyyy-MM-dd)'),
             ),
             TextField(
               controller: _motivoController,

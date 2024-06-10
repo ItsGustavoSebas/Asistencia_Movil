@@ -28,6 +28,7 @@ class _AppStateState extends State<AppState> {
     );
   }
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -48,7 +49,6 @@ class MyApp extends StatelessWidget {
           color: Color.fromARGB(255, 247, 215, 166),
         ),
       ),
-
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('es', 'ES'),
       ],
-      locale: const Locale('es', 'ES'), 
+      locale: const Locale('es', 'ES'),
     );
   }
 }

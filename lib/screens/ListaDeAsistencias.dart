@@ -42,15 +42,15 @@ class _ListaDeAsistenciasScreenState extends State<ListaDeAsistenciasScreen> {
   Color getStateColor(String estado) {
     switch (estado) {
       case 'Presente':
-        return Colors.green; // Green for Presente
+        return Colors.green;
       case 'Falta':
-        return Colors.red; // Red for Falta
+        return Colors.red;
       case 'Licencia':
-        return Colors.blue; // Blue for Licencia
+        return Colors.blue;
       case 'Atraso':
-        return Colors.orange; // Orange for Atraso
+        return const Color.fromARGB(255, 255, 123, 0);
       default:
-        return Colors.black; // Default color if state is unknown
+        return Colors.black;
     }
   }
 
@@ -126,7 +126,17 @@ class _ListaDeAsistenciasScreenState extends State<ListaDeAsistenciasScreen> {
                                   'Hora: ${asistencia.programacionAcademica.diaHorario.horario.horaInicio} - ${asistencia.programacionAcademica.diaHorario.horario.horaFin}',
                                   style: TextStyle(fontSize: 16),
                                 ),
-                                Divider(), // Add a divider between each asistencia
+                                if (asistencia.estado != "Falta" &&
+                                    asistencia.estado != "Licencia") ...[
+                                  Text(
+                                    'Hora Marcada: ${asistencia.fecha.hour.toString().padLeft(2, '0')}:${asistencia.fecha.minute.toString().padLeft(2, '0')}:${asistencia.fecha.second.toString().padLeft(2, '0')}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: getStateColor(asistencia.estado),
+                                    ),
+                                  ),
+                                ],
+                                Divider(),
                               ],
                             );
                           }).toList(),

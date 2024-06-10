@@ -11,22 +11,21 @@ class CardContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all( 20 ),
+        padding: const EdgeInsets.all(20),
         decoration: _createCardShape(),
         child: child,
       ),
     );
   }
 
-  BoxDecoration _createCardShape () => BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(25),
-    boxShadow: const [
-      BoxShadow(     // caja de sombra
-        color: Colors.black, // color de la sombra
-        blurRadius: 30,  // cuanto quiero exparcir de la sombra
-        offset: Offset(0, 5) // sombra
-      )
-    ]
-  );
+  BoxDecoration _createCardShape() => BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black,
+                blurRadius: 30, 
+                offset: Offset(0, 5)
+                )
+          ]);
 }

@@ -17,10 +17,8 @@ class SideBar extends StatelessWidget {
                 leading: const Icon(Icons.login),
                 title: const Text('Iniciar Sesión'),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LoginScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
               ),
             ],
@@ -33,12 +31,12 @@ class SideBar extends StatelessWidget {
                 accountEmail: Text(auth.user.ourUsers.email),
                 currentAccountPicture: CircleAvatar(
                   child: ClipOval(
-                    child:  Text(
-                            auth.user.ourUsers.name.isNotEmpty
-                                ? auth.user.ourUsers.name[0].toUpperCase()
-                                : '?', // Mostrar '?' si el nombre está vacío
-                            style: TextStyle(fontSize: 24),
-                          ),
+                    child: Text(
+                      auth.user.ourUsers.name.isNotEmpty
+                          ? auth.user.ourUsers.name[0].toUpperCase()
+                          : '?', 
+                      style: TextStyle(fontSize: 24),
+                    ),
                   ),
                 ),
                 decoration: const BoxDecoration(
@@ -56,13 +54,6 @@ class SideBar extends StatelessWidget {
                 title: const Text('Cerrar Sesión'),
                 onTap: () {
                   Provider.of<AuthService>(context, listen: false).logout();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.assignment),
-                title: const Text('Gestionar Permisos de Personal'),
-                onTap: () {
-                  Navigator.pushNamed(context, 'historial');
                 },
               ),
             ],

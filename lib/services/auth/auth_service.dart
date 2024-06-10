@@ -64,11 +64,9 @@ class AuthService extends ChangeNotifier {
               notifyListeners();
               return true;
             } else {
-              // Manejar el caso en el que la respuesta no contiene los datos esperados
               return false;
             }
           } else {
-            // Manejar el caso en el que la solicitud no fue exitosa (código de estado diferente de 200)
             return false;
           }
         } catch (e) {
@@ -86,7 +84,8 @@ class AuthService extends ChangeNotifier {
       return;
     } else {
       try {
-        final response = await http.get(Uri.parse('${servidor.baseUrl}/adminuser/get-profile'),
+        final response = await http.get(
+            Uri.parse('${servidor.baseUrl}/adminuser/get-profile'),
             headers: {'Authorization': 'Bearer $token'});
 
         print(response.body);

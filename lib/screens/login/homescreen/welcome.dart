@@ -24,8 +24,7 @@ class WelcomeScreen extends StatelessWidget {
           SizedBox(height: 5),
           Center(
             child: ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
