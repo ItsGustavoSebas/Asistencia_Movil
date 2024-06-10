@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               const Text(
-                'Bienvenido a nuestra app de Recursos Humanos',
+                'Bienvenido a nuestra app',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 50),
@@ -92,12 +92,12 @@ class _LoginForm extends StatelessWidget {
             ),
             disabledColor: Colors.grey,
             elevation: 0,
-            color: Colors.blue,
+            color: Color.fromARGB(255, 247, 215, 166),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
               child: Text(
                 loginForm.isLoading ? 'Espere' : 'Ingresar',
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
             onPressed: loginForm.isLoading

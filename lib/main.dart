@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const AppState());
 }
 
@@ -27,14 +28,13 @@ class _AppStateState extends State<AppState> {
     );
   }
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'RRHH',
+      title: 'UnivSys',
       initialRoute: 'splash',
       routes: {
         '/': (_) => const HomeScreen(),
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 248, 244, 243),
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          color: Colors.blue,
+          color: Color.fromARGB(255, 247, 215, 166),
         ),
       ),
 
@@ -55,9 +55,9 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-        const Locale('es', 'ES'), // Español
+        const Locale('es', 'ES'),
       ],
-      locale: const Locale('es', 'ES'), // Establece el idioma por defecto
+      locale: const Locale('es', 'ES'), 
     );
   }
 }

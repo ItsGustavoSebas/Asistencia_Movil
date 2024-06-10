@@ -27,7 +27,7 @@ class _HederIcon extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 30,
+            height: 130,
           ), // Margen superior del icono
           Center(
             child: SizedBox(
