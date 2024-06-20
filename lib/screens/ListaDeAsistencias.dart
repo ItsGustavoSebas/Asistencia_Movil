@@ -29,7 +29,7 @@ class _ListaDeAsistenciasScreenState extends State<ListaDeAsistenciasScreen> {
   }
 
   DateTime getBoliviaTime() {
-    return DateTime.now().subtract(Duration(hours: 4));
+    return DateTime.now();
   }
 
   DateTime parseHora(String hora) {
@@ -56,7 +56,7 @@ class _ListaDeAsistenciasScreenState extends State<ListaDeAsistenciasScreen> {
 
   void groupAsistenciasByDate(List<Asistencias> asistencias) {
     _asistenciasGroupedByDate = {};
-    DateTime now = DateTime.now().subtract(Duration(hours: 4));
+    DateTime now = DateTime.now();
     String today = DateFormat('dd/MM/yyyy').format(now);
     for (var asistencia in asistencias) {
       String formattedDate = DateFormat('dd/MM/yyyy').format(asistencia.fecha);

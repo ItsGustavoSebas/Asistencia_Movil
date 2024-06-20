@@ -1,4 +1,3 @@
-import 'package:asistencias_movil/screens/LicenciaScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:asistencias_movil/models/programacion_academica.dart';
 import 'package:asistencias_movil/services/gruposervice.dart';
@@ -28,7 +27,7 @@ class _AsistenciascreenState extends State<Asistenciascreen> {
   }
 
   Future<void> _marcarAsistencia() async {
-    final DateTime now = DateTime.now().subtract(Duration(hours: 4));
+    final DateTime now = DateTime.now();
     final asistencia = widget.programacion.asistencias.firstWhere(
       (a) =>
           a.fecha.year == now.year &&
@@ -131,18 +130,6 @@ class _AsistenciascreenState extends State<Asistenciascreen> {
                     child: Text('Marcar Asistencia Ahora'),
                   ),
                   SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LicenciaScreen(
-                              programacionAcademicaId: widget.programacion.id),
-                        ),
-                      );
-                    },
-                    child: Text('Solicitar Licencia'),
-                  )
                 ],
               ),
             ),

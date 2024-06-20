@@ -24,11 +24,11 @@ class _HederIcon extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 130,
+            height: 100,
           ), // Margen superior del icono
           Center(
             child: SizedBox(
-              width: 200,
+              width: 300,
               child: Image(
                 image: AssetImage('assets/utils/splash.jpg'),
                 fit: BoxFit.cover,

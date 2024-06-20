@@ -15,32 +15,47 @@ class _LicenciaScreenState extends State<LicenciaScreen> {
   final TextEditingController _fechaInicioController = TextEditingController();
   final TextEditingController _fechaFinController = TextEditingController();
   final TextEditingController _motivoController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
   Future<void> _solicitarLicencia() async {
-    setState(() {
-      _isLoading = true;
-    });
+    if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        _isLoading = true;
+      });
 
-    DateTime fechaInicio = DateTime.parse(_fechaInicioController.text);
-    DateTime fechaFin = DateTime.parse(_fechaFinController.text);
-    String motivo = _motivoController.text;
+      DateTime fechaInicio = DateTime.parse(_fechaInicioController.text);
+      DateTime fechaFin = DateTime.parse(_fechaFinController.text);
+      String motivo = _motivoController.text;
 
-    String resultado = await GrupoService().solicitarLicencia(
-        widget.programacionAcademicaId, fechaInicio, fechaFin, motivo);
+      String resultado = await GrupoService().solicitarLicencia(
+          widget.programacionAcademicaId, fechaInicio, fechaFin, motivo);
 
-    setState(() {
-      _isLoading = false;
-    });
+      setState(() {
+        _isLoading = false;
+      });
 
-    if (resultado == 'correcto') {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Licencia solicitada con éxito')));
-      Navigator.pushReplacementNamed(context, '/');
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error al solicitar licencia')));
+      if (resultado == 'correcto') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Licencia solicitada con éxito')));
+        Navigator.pushReplacementNamed(context, '/');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error al solicitar licencia')));
+      }
     }
+  }
+
+  String? _validateFecha(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor ingrese una fecha';
+    }
+    try {
+      DateTime.parse(value);
+    } catch (e) {
+      return 'Formato de fecha incorrecto (yyyy-MM-dd)';
+    }
+    return null;
   }
 
   @override
@@ -51,31 +66,42 @@ class _LicenciaScreenState extends State<LicenciaScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _fechaInicioController,
-              decoration:
-                  InputDecoration(labelText: 'Fecha de Inicio (yyyy-MM-dd)'),
-            ),
-            TextField(
-              controller: _fechaFinController,
-              decoration:
-                  InputDecoration(labelText: 'Fecha de Fin (yyyy-MM-dd)'),
-            ),
-            TextField(
-              controller: _motivoController,
-              decoration: InputDecoration(labelText: 'Motivo'),
-            ),
-            SizedBox(height: 20),
-            if (_isLoading)
-              CircularProgressIndicator()
-            else
-              ElevatedButton(
-                onPressed: _solicitarLicencia,
-                child: Text('Solicitar Licencia'),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _fechaInicioController,
+                decoration:
+                    InputDecoration(labelText: 'Fecha de Inicio (yyyy-MM-dd)'),
+                validator: _validateFecha,
               ),
-          ],
+              TextFormField(
+                controller: _fechaFinController,
+                decoration:
+                    InputDecoration(labelText: 'Fecha de Fin (yyyy-MM-dd)'),
+                validator: _validateFecha,
+              ),
+              TextFormField(
+                controller: _motivoController,
+                decoration: InputDecoration(labelText: 'Motivo'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor ingrese un motivo';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              if (_isLoading)
+                CircularProgressIndicator()
+              else
+                ElevatedButton(
+                  onPressed: _solicitarLicencia,
+                  child: Text('Solicitar Licencia'),
+                ),
+            ],
+          ),
         ),
       ),
     );

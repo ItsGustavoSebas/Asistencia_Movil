@@ -1,8 +1,7 @@
 import 'package:asistencias_movil/screens/AsistenciaScreen.dart';
-import 'package:asistencias_movil/screens/ListaDeAsistencias.dart';
+import 'package:asistencias_movil/screens/LicenciaScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:asistencias_movil/models/programacion_academica.dart';
-import 'package:asistencias_movil/screens/ProgramacionCalendarioScreen.dart';
 import 'package:asistencias_movil/services/auth/auth_service.dart';
 import 'package:asistencias_movil/services/gruposervice.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -58,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   DateTime getBoliviaTime() {
-    return DateTime.now().subtract(Duration(hours: 4));
+    return DateTime.now();
   }
 
   DateTime parseHora(String hora) {
@@ -199,26 +198,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: () {
-                            // Navegar a la vista de calendario
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ProgramacionScreen()),
+                                builder: (context) => LicenciaScreen(
+                                    programacionAcademicaId:
+                                        auth.user.ourUsers.id),
+                              ),
                             );
                           },
-                          child: Text('Ver Programación Académica'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Navegar a la vista de reporte de asistencias
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ListaDeAsistenciasScreen()),
-                            );
-                          },
-                          child: Text('Ver Reporte de Asistencias'),
+                          child: Text('Solicitar Licencia'),
                         ),
                         Card(
                           shape: RoundedRectangleBorder(

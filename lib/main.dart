@@ -1,5 +1,7 @@
 import 'package:asistencias_movil/components/components.dart';
+import 'package:asistencias_movil/screens/ListaDeLicencias.dart';
 import 'package:asistencias_movil/screens/screens.dart';
+import 'package:asistencias_movil/services/licenciaService.dart';
 import 'package:asistencias_movil/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,7 @@ class _AppStateState extends State<AppState> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthService()),
+        ChangeNotifierProvider(create: (_) => LicenciaService()),
       ],
       child: const MyApp(),
     );
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/': (_) => const HomeScreen(),
         'splash': (_) => const SplashScreen(),
         'login': (_) => LoginScreen(),
+        'licencias': (_) => LicenciasListScreen(),
       },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: const Color.fromARGB(255, 248, 244, 243),

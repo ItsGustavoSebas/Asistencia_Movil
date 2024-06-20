@@ -30,7 +30,7 @@ class _ProgramacionScreenState extends State<ProgramacionScreen> {
   }
 
   DateTime getBoliviaTime() {
-    return DateTime.now().subtract(Duration(hours: 4));
+    return DateTime.now();
   }
 
   DateTime parseHora(String hora) {

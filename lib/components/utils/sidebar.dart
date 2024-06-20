@@ -1,3 +1,6 @@
+import 'package:asistencias_movil/screens/ListaDeAsistencias.dart';
+import 'package:asistencias_movil/screens/ListaDeLicencias.dart';
+import 'package:asistencias_movil/screens/ProgramacionCalendarioScreen.dart';
 import 'package:asistencias_movil/screens/screens.dart';
 import 'package:asistencias_movil/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -50,12 +53,45 @@ class SideBar extends StatelessWidget {
                 endIndent: 15,
               ),
               ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text('Inicio'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.calendar_month),
+                title: const Text('Programación Académica'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProgramacionScreen()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.check_circle),
+                title: const Text('Asistencias'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListaDeAsistenciasScreen()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.list_rounded),
+                title: const Text('Licencias'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LicenciasListScreen()));
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Cerrar Sesión'),
                 onTap: () {
                   Provider.of<AuthService>(context, listen: false).logout();
                 },
               ),
+              
             ],
           );
         }
